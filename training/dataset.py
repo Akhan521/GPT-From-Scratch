@@ -84,9 +84,9 @@ class TextDataset(Dataset):
         This allows the model to learn to predict the next character based on the context.
         '''
         # Get the input sequence (context)
-        input = torch.tensor(self.data[idx:idx + self.context_length])
+        input = torch.tensor(self.data[idx:idx + self.context_length], dtype=torch.long)
         # Get the target sequence (including next character to predict)
-        target = torch.tensor(self.data[idx + 1:idx + self.context_length + 1])
+        target = torch.tensor(self.data[idx + 1:idx + self.context_length + 1], dtype=torch.long)
 
         return input, target
     

@@ -58,7 +58,7 @@ class GPTTrainer:
             outputs = self.model(inputs) # Shape: (batch_size, context_length, vocab_size)
 
             # Reshape outputs and targets for loss calculation
-            # CrossEntropyLoss expects inputs of shape (N, C) and targets of shape (N, ) where N = batch_size * context_length and C = vocab_size
+            # CrossEntropyLoss expects inputs of shape (N, V) and targets of shape (N, ) where N = batch_size * context_length and V = vocab_size
             _, _, vocab_size = outputs.shape
             outputs_reshaped = outputs.view(-1, vocab_size)  # Shape: (batch_size * context_length, vocab_size)
             targets_reshaped = targets.view(-1)              # Shape: (batch_size * context_length, )
