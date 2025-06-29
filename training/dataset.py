@@ -1,5 +1,6 @@
 import torch
 from torch.utils.data import Dataset
+from typing import Tuple
 import pickle
 import os
 
@@ -13,7 +14,7 @@ Note: Subclasses of PyTorch's Dataset class must implement the __len__ and __get
 '''
 
 class TextDataset(Dataset):
-    def __init__(self, txt_file_path: str, context_length: int = 128):
+    def __init__(self, txt_file_path: str, context_length: int = 128) -> None:
         '''
         Initializes the TextDataset with a file path to a text file and context length.
 
@@ -45,7 +46,7 @@ class TextDataset(Dataset):
         # Convert text to integers (representing characters as integers)
         self.data = [self.char_to_int[ch] for ch in self.text]
 
-    def __len__(self):
+    def __len__(self) -> int:
         '''
         Returns the total number of training examples in the dataset. 
 
@@ -60,7 +61,7 @@ class TextDataset(Dataset):
         '''
         return len(self.data) - self.context_length
     
-    def __getitem__(self, idx):
+    def __getitem__(self, idx) -> Tuple[torch.Tensor, torch.Tensor]:
         '''
         Returns a single training example from the dataset.
 
@@ -89,7 +90,7 @@ class TextDataset(Dataset):
 
         return input, target
     
-    def save_vocab(self, save_path: str):
+    def save_vocab(self, save_path: str) -> None:
         '''
         Saves vocabulary mappings so that we can use them later for inference/text generation.
 
@@ -114,7 +115,7 @@ class TextDataset(Dataset):
         print(f"Vocabulary saved to {save_path}")
 
     @staticmethod
-    def load_vocab(load_path: str):
+    def load_vocab(load_path: str) -> dict:
         '''
         Loads vocabulary data from a saved file.
 
