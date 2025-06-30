@@ -22,6 +22,7 @@ class GPT(nn.Module):
                     Args:
                         embed_dim (int): Embedding dimension of the model.
                         att_dim (int): Attention dimension of the model.
+                        
                     Returns:
                         None: The single attention head is initialized and ready for use.
                     '''
