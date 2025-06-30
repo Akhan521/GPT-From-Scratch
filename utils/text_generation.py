@@ -1,16 +1,16 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from model.gpt import GPT
 
 '''This module handles text generation using our trained model.'''
 
-def generate_text(model: nn.Module, vocab_data: dict, device: torch.device, 
-                  prompt: str = '', max_length: int = 500, temperature: float = 1.0) -> str:
+def generate_text(model: GPT, vocab_data: dict, device: torch.device, prompt: str = '', max_length: int = 500, temperature: float = 1.0) -> str:
     '''
     Generates text using the trained GPT model.
 
     Args:
-        model (nn.Module): The trained GPT model.
+        model (GPT): The trained GPT model.
         vocab_data (dict): A dictionary containing vocabulary data.
         device (torch.device): The device to run the model on (CPU or GPU).
         prompt (str): The initial text prompt to start generation from.

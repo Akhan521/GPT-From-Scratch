@@ -5,6 +5,7 @@ from torch.utils.data import DataLoader
 from typing import List, Tuple
 import matplotlib.pyplot as plt
 from training.config import TrainingConfig
+from model.gpt import GPT
 import os
 
 '''
@@ -17,7 +18,17 @@ We separate the training logic from the model for the following reasons:
 3. To allow for easier testing and debugging of the training process without modifying the model code.
 '''
 class GPTTrainer:
-    def __init__(self, model: nn.Module, config: TrainingConfig) -> None:
+    def __init__(self, model: GPT, config: TrainingConfig) -> None:
+        '''
+        Initializes the GPTTrainer with a model and training configuration.
+
+        Args:
+            model (GPT): The GPT model to be trained.
+            config (TrainingConfig): Configuration object containing training parameters.
+
+        Returns:
+            None: The trainer is initialized with the model and configuration.
+        '''
         self.model = model.to(config.DEVICE)
         self.config = config
         self.device = config.DEVICE
