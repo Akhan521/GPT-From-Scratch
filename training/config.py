@@ -33,9 +33,6 @@ class TrainingConfig:
     VOCAB_PATH: str = 'vocab/vocab.pkl'              # Path to save/load vocabulary
     FINAL_MODEL_PATH: str = 'weights/final_model.pt' # Path to save the final model weights
 
-    # Validation configurations
-    EVAL_EVERY: int = 1          # How often to evaluate the model on validation data (every epoch)
-
     @classmethod
     def print_config(cls) -> None:
         '''Prints all configuration settings.'''
