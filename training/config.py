@@ -45,21 +45,21 @@ class TrainingConfig:
 '''
 Why These Settings?
 
-# CONTEXT_LENGTH = 128
+# CONTEXT_LENGTH = 64
     - This balances memory usage with context understanding.
     - GPT needs enough context to understand relationships in text and generate coherent responses.
     - The larger the context, the more memory it requires, so we choose a reasonable size.
 
-# BATCH_SIZE = 32
-    - This choice of batch size fits well with most GPUs.
+# BATCH_SIZE = 4
+    - This choice of batch size is small enough to fit in memory on a CPU.
     - The larger the batch size, the more stable the gradient updates, but it also requires more memory.
     - It serves as a good starting point for training, allowing the model to learn effectively without running out of memory.
 
-# LEARNING_RATE = 1e-3
-    - This is a common starting point for the ADAM optimizer.
+# LEARNING_RATE = 5e-4
+    - This smaller learning rate is suitable for training on a CPU, where we want to avoid large updates that could destabilize training.
     - Having a learning rate that is too high can cause the model to diverge, while too low can slow down training.
 
-# EPOCHS = 50
+# EPOCHS = 60
     - This is a reasonable number of epochs to allow the model to learn from the data and see good results.
     - The number of epochs can be adjusted based on the model's performance on validation data.
     - We can stop training early if the model stops improving (early stopping).
