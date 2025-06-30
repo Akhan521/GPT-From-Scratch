@@ -228,7 +228,8 @@ class GPT(nn.Module):
         token_embeddings = self.token_embeddings(context)
 
         # Get the positional embeddings for the input context
-        pos_embeddings = self.pos_embeddings(torch.arange(context_length, device=context.device))
+        positions = torch.arange(context_length, device=context.device)
+        pos_embeddings = self.pos_embeddings(positions)
 
         # Combine token and positional embeddings
         embedded = token_embeddings + pos_embeddings  # Shape: (batch_size, context_length, model_dim)
