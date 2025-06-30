@@ -62,6 +62,11 @@ def prepare_data(config: TrainingConfig) -> Tuple[DataLoader, DataLoader, int]:
         pin_memory=True if config.DEVICE == 'cuda' else False # For speeding up data transfer to GPU
     )
 
+    # If there are no validation samples, we can skip creating a DataLoader for validation.
+    if val_size == 0:
+        print('No validation samples available. Skipping validation DataLoader creation.')
+        return train_loader, None, dataset.vocab_size
+    
     val_loader = DataLoader(
         dataset=val_dataset,
         batch_size=config.BATCH_SIZE,
@@ -162,7 +167,7 @@ def save_training_summary(trainer: GPTTrainer, config: TrainingConfig, vocab_siz
     summary = f'''
     --- GPT Training Summary ---
     Final Training Loss: {trainer.train_losses[-1]:.4f}
-    Final Validation Loss: {trainer.val_losses[-1]:.4f}
+    Final Validation Loss: {trainer.val_losses[-1]:.4f if trainer.val_losses else 'N/A'}
     Total Training Epochs: {len(trainer.train_losses)}
     Vocabulary Size: {vocab_size}
 

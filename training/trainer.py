@@ -229,8 +229,8 @@ class GPTTrainer:
 
         If validation loss has not improved for 'patience' epochs, we stop training.
         '''
-        # If we don't have enough validation losses to check, don't stop early
-        if len(self.val_losses) < patience + 1:
+        # If we don't have enough validation losses to check or we don't have validation at all, don't stop early
+        if not self.val_losses or len(self.val_losses) < patience + 1:
             return False
         
         # Check if validation loss hasn't improved for 'patience' epochs
