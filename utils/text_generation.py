@@ -77,7 +77,7 @@ def generate_text(model: GPT, vocab_data: dict, device: torch.device, prompt: st
 
             # Add the predicted char to our context for the next iteration
             # Context has shape (B, C), we need to append the new char along the last dimension
-            context = torch.cat((context, next_char.unsqueeze(0)), dim=-1)
+            context = torch.cat((context, next_char), dim=-1)
 
             # Convert the predicted token (int) back to a character and append to generated text
             generated_text.append(int_to_char[next_char.item()])
