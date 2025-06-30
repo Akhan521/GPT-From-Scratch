@@ -33,40 +33,40 @@ class GPT(nn.Module):
                     self.query_layer = nn.Linear(embed_dim, att_dim, bias=False)
                     self.value_layer = nn.Linear(embed_dim, att_dim, bias=False)
 
-                    def forward(self, embedded: torch.Tensor) -> torch.Tensor:
-                        '''
-                        Computes the attention head's output given the input embeddings.
+                def forward(self, embedded: torch.Tensor) -> torch.Tensor:
+                    '''
+                    Computes the attention head's output given the input embeddings.
 
-                        Args:
-                            embedded (torch.Tensor): Input embeddings of shape (batch_size, context_length, embed_dim).
+                    Args:
+                        embedded (torch.Tensor): Input embeddings of shape (batch_size, context_length, embed_dim).
 
-                        Returns:
-                            torch.Tensor: Output of the attention head of shape (batch_size, context_length, att_dim).
+                    Returns:
+                        torch.Tensor: Output of the attention head of shape (batch_size, context_length, att_dim).
 
-                        The formula for computing the attention scores is:
-                            Scores = softmax((Q * K^T) / sqrt(d_k)) * V, 
-                            where Q is the query tensor, K is the key tensor, d_k is the attention dimension, and V is the value tensor.
-                        '''
-                        # Compute the key, query, and value tensors
-                        k = self.key_layer(embedded)   # Shape: (batch_size, context_length, att_dim)
-                        q = self.query_layer(embedded) # Shape: (batch_size, context_length, att_dim)
-                        v = self.value_layer(embedded) # Shape: (batch_size, context_length, att_dim)
+                    The formula for computing the attention scores is:
+                        Scores = softmax((Q * K^T) / sqrt(d_k)) * V, 
+                        where Q is the query tensor, K is the key tensor, d_k is the attention dimension, and V is the value tensor.
+                    '''
+                    # Compute the key, query, and value tensors
+                    k = self.key_layer(embedded)   # Shape: (batch_size, context_length, att_dim)
+                    q = self.query_layer(embedded) # Shape: (batch_size, context_length, att_dim)
+                    v = self.value_layer(embedded) # Shape: (batch_size, context_length, att_dim)
 
-                        # Compute the attention scores
-                        _, context_length, att_dim = k.shape
-                        scores = q @ torch.transpose(k, 1, 2) / (att_dim ** 0.5)  # Shape: (batch_size, context_length, context_length)
+                    # Compute the attention scores
+                    _, context_length, att_dim = k.shape
+                    scores = q @ torch.transpose(k, 1, 2) / (att_dim ** 0.5)  # Shape: (batch_size, context_length, context_length)
 
-                        # To prevent our model from attending to/seeing future tokens, we apply a mask to the scores.
-                        pre_mask = torch.tril(torch.ones(context_length, context_length)).to(embedded.device)  # Lower triangular mask
-                        mask = (pre_mask == 0).to(embedded.device)
-                        # We'll be using the softmax function, so setting the masked positions to -inf will ensure they get a probability of 0.
-                        scores = scores.masked_fill(mask, float('-inf'))
+                    # To prevent our model from attending to/seeing future tokens, we apply a mask to the scores.
+                    pre_mask = torch.tril(torch.ones(context_length, context_length)).to(embedded.device)  # Lower triangular mask
+                    mask = (pre_mask == 0).to(embedded.device)
+                    # We'll be using the softmax function, so setting the masked positions to -inf will ensure they get a probability of 0.
+                    scores = scores.masked_fill(mask, float('-inf'))
 
-                        # Apply softmax to get attention weights
-                        scores = F.softmax(scores, dim=-1)  # Shape: (batch_size, context_length, context_length)
+                    # Apply softmax to get attention weights
+                    scores = F.softmax(scores, dim=-1)  # Shape: (batch_size, context_length, context_length)
 
-                        # Compute the output of the attention head
-                        return scores @ v  # Shape: (batch_size, context_length, att_dim)
+                    # Compute the output of the attention head
+                    return scores @ v  # Shape: (batch_size, context_length, att_dim)
                     
             def __init__(self, model_dim: int, num_heads: int) -> None:
                 '''
