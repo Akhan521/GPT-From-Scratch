@@ -13,22 +13,22 @@ class TrainingConfig:
     '''Configuration class for training a GPT model.'''
 
     # Data Configurations
-    CONTEXT_LENGTH: int = 128    # The number of tokens the model can see/read from
-    BATCH_SIZE: int = 32         # How many training examples to process in parallel
-    TRAIN_SPLIT: float = 0.9     # Proportion of data to use for training (0.9 = 90% training, 10% validation)
+    CONTEXT_LENGTH: int = 64     # The number of tokens the model can see/read from (smaller context -> reduced memory use)
+    BATCH_SIZE: int = 4          # How many training examples to process in parallel (small batch size for CPU)
+    TRAIN_SPLIT: float = 1.0     # Proportion of data to use for training (all data for training, no validation split)
 
     # Model Architecture (Should match our GPT model's architecture)
-    MODEL_DIM: int = 252         # Size of embeddings
-    NUM_BLOCKS: int = 6          # Number of transformer blocks
-    NUM_HEADS: int = 6           # Number of attention heads
+    MODEL_DIM: int = 128         # Size of embeddings (balanced size for learning and speed)
+    NUM_BLOCKS: int = 4          # Number of transformer blocks (4 is enough for a small model)
+    NUM_HEADS: int = 4           # Number of attention heads
 
     # Training Hyperparameters
-    EPOCHS: int = 50             # How many times to go through the entire dataset
-    LEARNING_RATE: float = 1e-3  # How fast the model learns
+    EPOCHS: int = 60             # How many times to go through the entire dataset (enough for training on a small dataset)
+    LEARNING_RATE: float = 5e-4  # How fast the model learns (slower learning rate for stability on CPU)
     DEVICE: str = 'cuda' if torch.cuda.is_available() else 'cpu' # Device to run the model on (GPU or CPU)
 
     # Checkpointing configurations
-    SAVE_EVERY: int = 10                             # How often to save the model (every 10 epochs)
+    SAVE_EVERY: int = 20                             # How often to save the model (every 20 epochs)
     CHECKPOINT_DIR: str = 'weights/checkpoints'      # Where to save model weights
     VOCAB_PATH: str = 'vocab/vocab.pkl'              # Path to save/load vocabulary
     FINAL_MODEL_PATH: str = 'weights/final_model.pt' # Path to save the final model weights
