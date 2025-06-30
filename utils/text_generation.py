@@ -53,9 +53,10 @@ def generate_text(model: GPT, vocab_data: dict, device: torch.device, prompt: st
     # Generate tokens (chars) one-by-one until max_length is reached
     with torch.no_grad(): 
         for _ in range(max_length):
-            # Limit the context to the model's context length. Our context has shape (B, C), where B = 1 (batch size) and C = context length.
-            if len(context.T) > model.context_length:
-                context = context[:, -model.context_length:]
+            # Limit the input context to the model's context length. Our context has shape (B, C), where B = 1 (batch size) and C = context length.
+            model_context_length = model.pos_embeddings.num_embeddings # This is the maximum context length the model can handle.
+            if len(context.T) > model_context_length:
+                context = context[:, -model_context_length:]
 
             # Get model predictions
             outputs = model(context) # Shape: (B, C, V), where B = 1 (batch size), C = context length, V = vocab_size
