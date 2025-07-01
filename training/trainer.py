@@ -40,7 +40,7 @@ class GPTTrainer:
         self.optimizer = optim.AdamW(self.model.parameters(), lr=config.LEARNING_RATE)
         self.criterion = nn.CrossEntropyLoss()
 
-        print("Trainer initialized on device: ", self.device)
+        print("\nTrainer initialized on device: ", self.device)
 
     def train_epoch(self, train_loader: DataLoader) -> float:
         '''

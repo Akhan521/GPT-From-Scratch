@@ -117,9 +117,6 @@ def train_model(gpt_model: GPT, train_loader: DataLoader, val_loader: DataLoader
     Returns:
         trainer (GPTTrainer): An instance of the GPTTrainer that manages the training process.
     '''
-    print('Starting training...')
-    config.print_config()
-
     # Create the trainer
     trainer = GPTTrainer(model=gpt_model, config=config)
 
