@@ -86,9 +86,6 @@ class GPTTrainer:
             total_loss += loss.item()
             num_batches += 1
 
-            if batch_idx % 100 == 0:
-                print(f"Batch {batch_idx}/{len(train_loader)} - Loss: {loss.item():.4f}")
-
         # Calculate average loss for the epoch
         return total_loss / num_batches
     
@@ -145,7 +142,7 @@ class GPTTrainer:
         Returns:
             None: The model is trained and saved periodically.
         '''
-        print(f"Starting training for {epochs} epochs...")
+        print(f"\nStarting training for {epochs} epochs...")
         self.config.print_config()
 
         for epoch in range(epochs):
@@ -168,12 +165,12 @@ class GPTTrainer:
 
             # Early stopping check (optional)
             if self.should_stop_early():
-                print("Early stopping triggered. Stopping training.")
+                print("Early stopping triggered. Stopping training.\n")
                 break
 
         # Save the final model at the end of training
         self.save_final_model()
-        print("Training complete!")
+        print("Training complete!\n")
 
     def save_checkpoint(self, epoch: int) -> None:
         '''
@@ -215,7 +212,7 @@ class GPTTrainer:
         # Ensure the directory exists
         os.makedirs(os.path.dirname(self.config.FINAL_MODEL_PATH), exist_ok=True)
         torch.save(self.model.state_dict(), self.config.FINAL_MODEL_PATH)
-        print(f"Final model saved at {self.config.FINAL_MODEL_PATH}")
+        print(f"Final model saved at {self.config.FINAL_MODEL_PATH}\n")
 
     def should_stop_early(self, patience: int = 5) -> bool:
         '''
@@ -258,12 +255,12 @@ class GPTTrainer:
 
         plt.xlabel('Epochs')
         plt.ylabel('Loss')
-        plt.title('Training and Validation Losses')
+        plt.title('Loss Plot')
         plt.legend()
         plt.grid(True)
         plt.show()
 
         # Save the plot as an image file
         plt.savefig('Training_Progress.png')
-        print("Loss plot saved as 'Training_Progress.png'")
+        print("Loss plot saved as 'Training_Progress.png'\n")
 

@@ -48,7 +48,7 @@ def load_model(model_path: str, vocab_data: dict, config: TrainingConfig) -> GPT
     model.to(device)  # Move the model to the specified device (CPU or GPU)
     model.eval()      # Set the model to evaluation mode
 
-    print(f'Model loaded successfully from {model_path}')
+    print(f'Model loaded successfully from {model_path}\n')
     return model
 
 def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, temperature: float, config: TrainingConfig) -> None:
@@ -89,7 +89,7 @@ def generate_text_pipeline() -> None:
     2. Loads the trained GPT model.
     3. Generates text based on a user-defined prompt.
     '''
-    print('Starting text generation pipeline...')
+    print('\nStarting text generation pipeline...')
 
     try:
         # Load the training configuration
@@ -115,15 +115,15 @@ def generate_text_pipeline() -> None:
         # Generate text
         generate(model, vocab_data, prompt, max_length, temperature, config)
 
-        print('\nText generation completed successfully!')
+        print('\nText generation completed successfully!\n')
 
     except FileNotFoundError as e:
         print(f'Error: {str(e)}')
-        print('Please ensure you have trained the model first using train.py.')
+        print('Please ensure you have trained the model first using train.py.\n')
 
     except Exception as e:
         print(f'An error occurred during text generation: {str(e)}')
-        print('Please check your model files and try again.')
+        print('Please check your model files and try again.\n')
 
 if __name__ == '__main__':
     generate_text_pipeline()

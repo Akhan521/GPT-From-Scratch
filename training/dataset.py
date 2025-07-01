@@ -112,7 +112,7 @@ class TextDataset(Dataset):
         with open(save_path, 'wb') as f:
             pickle.dump(vocab_data, f)
 
-        print(f"Vocabulary saved to {save_path}")
+        print(f"Vocabulary saved to {save_path}\n")
 
     @staticmethod
     def load_vocab(load_path: str) -> dict:

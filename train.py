@@ -27,7 +27,7 @@ def prepare_data(config: TrainingConfig) -> Tuple[DataLoader, DataLoader, int]:
             - val_loader (DataLoader): DataLoader for the validation set.
             - vocab_size (int): Size of the vocabulary used in the dataset.
     '''
-    print('Preparing datasets...')
+    print('\nPreparing datasets...')
 
     filepath = 'data/training_text.txt'
     if not os.path.exists(filepath):
@@ -100,7 +100,7 @@ def create_gpt_model(vocab_size: int, config: TrainingConfig) -> GPT:
     # Print model summary
     total_params = sum(p.numel() for p in gpt_model.parameters())
     trainable_params = sum(p.numel() for p in gpt_model.parameters() if p.requires_grad)
-    print(f"GPT Model created with {total_params} total parameters, {trainable_params} trainable parameters.")
+    print(f'GPT Model created with {total_params} total parameters, {trainable_params} trainable parameters.\n')
 
     return gpt_model
 
@@ -131,18 +131,18 @@ def train_model(gpt_model: GPT, train_loader: DataLoader, val_loader: DataLoader
             epochs=config.EPOCHS
         )
 
-        print('Training completed successfully.')
+        print('Training completed successfully.\n')
         return trainer
     
     except KeyboardInterrupt:
         print('\nTraining interrupted (ctrl + c). Saving current progress...')
         trainer.save_checkpoint(epoch=len(trainer.train_losses))
-        print('Checkpoint saved. You may resume training later.')
+        print('Checkpoint saved. You may resume training later.\n')
         return trainer
     
     except Exception as e:
-        print(f'Training failed with error: {str(e)}')
-        print('Saving current progress...')
+        print(f'\nTraining failed with error: {str(e)}')
+        print('Saving current progress...\n')
         trainer.save_checkpoint(epoch=len(trainer.train_losses))
         raise e
 
@@ -158,7 +158,7 @@ def save_training_summary(trainer: GPTTrainer, config: TrainingConfig, vocab_siz
     Returns:
         str: Our training summary as a string.
     '''
-    print('Saving training summary and plots...')
+    print('\nSaving training summary and plots...')
 
     # Plot training and validation losses
     trainer.plot_losses()
@@ -183,6 +183,7 @@ def save_training_summary(trainer: GPTTrainer, config: TrainingConfig, vocab_siz
         - Model: {config.FINAL_MODEL_PATH}
         - Vocabulary: {config.VOCAB_PATH}
         - Checkpoints: {config.CHECKPOINT_DIR}/
+
     '''
 
     # Save the summary to a text file
@@ -190,7 +191,7 @@ def save_training_summary(trainer: GPTTrainer, config: TrainingConfig, vocab_siz
     with open(summary_path, 'w') as f:
         f.write(summary)
 
-    print(f'Training summary saved to {summary_path}')
+    print(f'Training summary saved to {summary_path}\n')
     return summary
 
 def run_training_pipeline() -> None:
@@ -203,7 +204,7 @@ def run_training_pipeline() -> None:
     3. Trains the model.
     4. Saves the training summary.
     '''
-    print('Starting GPT training pipeline...')
+    print('\nStarting GPT training pipeline...')
 
     # Initialize the training configuration
     config = TrainingConfig()
@@ -224,11 +225,11 @@ def run_training_pipeline() -> None:
 
         print('\nTraining completed successfully!')
         print(f'Your trained model is saved at {config.FINAL_MODEL_PATH}')
-        print('You can now use generate.py to generate text with your trained model!')
+        print('You can now use generate.py to generate text with your trained model!\n')
 
     except Exception as e:
         print(f'Training failed with error: {str(e)}')
-        print('Please check the error message above for details.')
+        print('Please check the error message above for details.\n')
         raise e
     
 if __name__ == '__main__':
