@@ -67,6 +67,10 @@ def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, tempera
         None: The function prints the generated text to the console.
     '''
     print('Generating text...')
+    print(f'\n\tPrompt: {prompt}')
+    print(f'\n\tMax Length: {max_length} characters to generate.')
+    print(f'\n\tTemperature: {temperature} (controls randomness)\n')
+    print('=' * 60)
 
     # Generate text using the model
     generated_text = generate_text(
@@ -78,10 +82,6 @@ def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, tempera
         temperature=temperature
     )
 
-    print(f'\n\tPrompt: {prompt}')
-    print(f'\n\tMax Length: {max_length} characters generated.')
-    print(f'\n\tTemperature: {temperature} (controls randomness)\n')
-    print('=' * 60)
     print(f'\nGenerated text:\n{prompt}{generated_text}\n')
 
 def generate_text_pipeline() -> None:
@@ -113,9 +113,9 @@ def generate_text_pipeline() -> None:
         model = load_model(config.FINAL_MODEL_PATH, vocab_data, config)
 
         # Define parameters for text generation
-        prompt = 'Here is Edward Bear'
-        max_length = 100   # Number of tokens to generate
-        temperature = 0.8  # Controls randomness in generation
+        prompt = 'Here is Edward Bear, coming'
+        max_length = 500   # Number of tokens to generate
+        temperature = 1.0  # Controls randomness in generation
 
         # Generate text
         generate(model, vocab_data, prompt, max_length, temperature, config)
