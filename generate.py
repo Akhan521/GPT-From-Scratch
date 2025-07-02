@@ -83,6 +83,8 @@ def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, tempera
     )
 
     print(f'\nGenerated text:\n{prompt}{generated_text}\n')
+    print('=' * 60)
+    print('\nText generation completed successfully!\n')
 
 def generate_text_pipeline() -> None:
     '''
@@ -118,10 +120,7 @@ def generate_text_pipeline() -> None:
         temperature = 1.0  # Controls randomness in generation
 
         # Generate text
-        generate(model, vocab_data, prompt, max_length, temperature, config)
-
-        print('=' * 60)
-        print('\nText generation completed successfully!\n')
+        generate(model, vocab_data, prompt, max_length, temperature, config)        
 
     except FileNotFoundError as e:
         print(f'Error: {str(e)}')
