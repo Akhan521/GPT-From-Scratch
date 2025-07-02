@@ -180,7 +180,7 @@ To get started with this project locally, follow the steps below.
 
 ### 🔧 Requirements
 
-This project was developed using **Python 3.10** and the following core libraries:
+This project was developed using **Python 3.12** and the following core libraries:
 
 - [PyTorch](https://pytorch.org/) (2.7.1)
 - matplotlib
