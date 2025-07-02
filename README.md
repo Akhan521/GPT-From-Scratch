@@ -229,6 +229,10 @@ Building this GPT model from scratch was both a technical deep dive and a nostal
 - How to implement a **Decoder-Only Transformer** without relying on pre-built transformer libraries.
 - The importance of proper **tokenization**, training checkpoints, and text generation loops.
 - How temperature and context length influence the creativity and coherence of generated text.
+- How to structure a clean and modular ML codebase using `model`, `training`, and `utils` modules for scalability.
+- The benefits and trade-offs of character-level tokenization, especially for small datasets and creative generation tasks.
+- How to track training progress through visualizations and summaries + interpret model loss curves.
+
 
 ### 🔮 What's Next?
 
