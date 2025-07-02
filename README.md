@@ -139,7 +139,7 @@ There are **two ways** to play around with my trained GPT model:
 
 #### 🛠️ 2. Run Locally 
 
-For more details, [click here](https://github.com/Akhan521/GPT-From-Scratch/new/main?filename=README.md#-installation--setup).
+For more details, [click here](#-installation--setup).
 
 ### 🧱 Project Structure
 
