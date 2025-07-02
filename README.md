@@ -1,4 +1,4 @@
-# GPT-From-Scratch: Implementing My Own GPT-Like Model
+# GPT-From-Scratch: Building My Own GPT-Like Model
 
 ## 🚀 Project Overview
 
