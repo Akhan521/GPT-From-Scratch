@@ -170,7 +170,6 @@ class GPTTrainer:
 
         # Save the final model at the end of training
         self.save_final_model()
-        print("Training complete!\n")
 
     def save_checkpoint(self, epoch: int) -> None:
         '''
@@ -258,9 +257,9 @@ class GPTTrainer:
         plt.title('Loss Plot')
         plt.legend()
         plt.grid(True)
-        plt.show()
 
-        # Save the plot as an image file
+        # Save the plot as an image file before showing it
         plt.savefig('Training_Progress.png')
+        plt.show()
         print("Loss plot saved as 'Training_Progress.png'\n")
 

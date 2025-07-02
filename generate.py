@@ -48,7 +48,7 @@ def load_model(model_path: str, vocab_data: dict, config: TrainingConfig) -> GPT
     model.to(device)  # Move the model to the specified device (CPU or GPU)
     model.eval()      # Set the model to evaluation mode
 
-    print(f'Model loaded successfully from {model_path}\n')
+    print(f'\nModel loaded successfully from {model_path}\n')
     return model
 
 def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, temperature: float, config: TrainingConfig) -> None:
@@ -78,6 +78,10 @@ def generate(model: GPT, vocab_data: dict, prompt: str, max_length: int, tempera
         temperature=temperature
     )
 
+    print(f'\n\tPrompt: {prompt}')
+    print(f'\n\tMax Length: {max_length} characters generated.')
+    print(f'\n\tTemperature: {temperature} (controls randomness)\n')
+    print('=' * 60)
     print(f'\nGenerated text:\n{prompt}{generated_text}\n')
 
 def generate_text_pipeline() -> None:
@@ -90,6 +94,7 @@ def generate_text_pipeline() -> None:
     3. Generates text based on a user-defined prompt.
     '''
     print('\nStarting text generation pipeline...')
+    print('=' * 60)
 
     try:
         # Load the training configuration
@@ -108,13 +113,14 @@ def generate_text_pipeline() -> None:
         model = load_model(config.FINAL_MODEL_PATH, vocab_data, config)
 
         # Define parameters for text generation
-        prompt = 'Once upon a time'
+        prompt = 'Here is Edward Bear'
         max_length = 100   # Number of tokens to generate
         temperature = 0.8  # Controls randomness in generation
 
         # Generate text
         generate(model, vocab_data, prompt, max_length, temperature, config)
 
+        print('=' * 60)
         print('\nText generation completed successfully!\n')
 
     except FileNotFoundError as e:

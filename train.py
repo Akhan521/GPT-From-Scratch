@@ -163,7 +163,7 @@ def save_training_summary(trainer: GPTTrainer, config: TrainingConfig, vocab_siz
     # Our training summary
     summary = f'''
     --- GPT Training Summary ---
-    Final Training Loss: {trainer.train_losses[-1]:.4f}
+    Final Training Loss: {trainer.train_losses[-1]:.4f if trainer.train_losses else 'N/A'}
     Final Validation Loss: {trainer.val_losses[-1]:.4f if trainer.val_losses else 'N/A'}
     Total Training Epochs: {len(trainer.train_losses)}
     Vocabulary Size: {vocab_size}
@@ -220,7 +220,7 @@ def run_training_pipeline() -> None:
         summary = save_training_summary(trainer, config, vocab_size)
         print(summary)
 
-        print('\nTraining completed successfully!')
+        print('\nTraining pipeline completed successfully.')
         print(f'Your trained model is saved at {config.FINAL_MODEL_PATH}')
         print('You can now use generate.py to generate text with your trained model!\n')
 
@@ -231,3 +231,4 @@ def run_training_pipeline() -> None:
     
 if __name__ == '__main__':
     run_training_pipeline()
+    
