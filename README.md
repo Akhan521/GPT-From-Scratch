@@ -129,7 +129,7 @@ These examples demonstrate:
 
 There are **two ways** to play around with my trained GPT model:
 
-#### 🔗 1. [Try the Model on Google Colab]([https://colab.research.google.com/drive/1YOUR_COLAB_LINK_HERE](https://colab.research.google.com/drive/1pHiw6OKHFPuaUIHw2aJkLGNz1k-cHXLt?usp=sharing))
+#### 🔗 1. [Try the Model on Google Colab](https://colab.research.google.com/drive/1pHiw6OKHFPuaUIHw2aJkLGNz1k-cHXLt?usp=sharing)
 
 > _Recommended for non-technical users or anyone who wants to quickly test the model without setup._
 
