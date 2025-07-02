@@ -1,0 +1,21 @@
+
+    --- GPT Training Summary ---
+    Final Training Loss: 0.2675
+    Final Validation Loss: N/A
+    Total Training Epochs: 60
+    Vocabulary Size: 66 Unique Characters
+
+    Model Configuration:
+        - Context Length: 64
+        - Model Dimension: 128
+        - Number of Blocks: 4
+        - Number of Heads: 4
+        - Batch Size: 4
+        - Learning Rate: 0.0005
+
+    Files Created:
+        - Model: weights/final_model.pt
+        - Vocabulary: vocab/vocab.pkl
+        - Checkpoints: weights/checkpoints/
+
+    
