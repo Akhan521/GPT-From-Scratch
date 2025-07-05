@@ -249,7 +249,9 @@ I'm always open to feedback, collaboration, and discussion.
 🔗 Connect with me:
 [GitHub](https://github.com/Akhan521) + [LinkedIn](https://www.linkedin.com/in/aamir-khan-aak521/)
 
-<br>
+✨ View my portfolio:
+[Portfolio](https://aamir-khans-portfolio.vercel.app/)
+
 ⭐ If you liked this project, consider starring the repo!
 
 
