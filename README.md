@@ -247,7 +247,7 @@ If you've made it this far into my `README`, thank you for reading and giving me
 I'm always open to feedback, collaboration, and discussion.
 
 🔗 Connect with me:
-[GitHub](https://github.com/Akhan521) + [LinkedIn](https://www.linkedin.com/in/aamir-khan-bb83b8235/)
+[GitHub](https://github.com/Akhan521) + [LinkedIn](https://www.linkedin.com/in/aamir-khan-aak521/)
 
 <br>
 ⭐ If you liked this project, consider starring the repo!
