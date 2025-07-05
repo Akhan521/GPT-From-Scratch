@@ -187,7 +187,7 @@ This project was developed using **Python 3.12** and the following core librarie
 - numpy
 - and others (see `requirements.txt`)
 
-> ✅ Although available, no GPU is required.
+> ✅ Although GPU support is available, no GPU is required.
 
 ### 🛠️ Installation
 
